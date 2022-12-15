@@ -1,0 +1,49 @@
+on:
+  push:
+    branches: [ main, test ]
+  pull_request:
+    branches: [ main, test ]
+    
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: eu-west-1
+  AWS_DEFAULT_REGION: eu-west-1
+  
+jobs:
+  deploy_cv:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Generate an S3 object for each CV file
+        run: bash files_to_objects.sh
+        working-directory: ./modules/aws/cv
+        
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v2.0.3
+      
+      - name: Terraform init
+        run: terraform init
+        working-directory: ./terraform
+      
+      - name: Terraform validate
+        run: terraform validate
+        working-directory: ./terraform
+      
+      - name: Terraform plan
+        run: terraform plan
+        working-directory: ./terraform
+        
+      - name: Application Version
+        id: version
+        uses: paulhatch/semantic-version@v4.0.2
+        with:
+          change_path: "modules/aws/cv"
+          
+      - name: Terraform apply
+        run: terraform apply -auto-approve
+        working-directory: ./terraform
+        
+
