@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Generate an S3 object for each CV file
-        run: bash files_to_objects.sh
+        run: /usr/bin/bash files_to_objects.sh
         working-directory: ./modules/aws/cv
         
       - name: Terraform setup
