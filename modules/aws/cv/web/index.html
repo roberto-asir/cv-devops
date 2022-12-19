@@ -255,9 +255,9 @@
               <div class="p-2 text-bg-info bg-showthecode"  style="--bs-bg-opacity: 0.2;">
                 <h5 class="text-center">Write is cheap, I show you the code</h5>
                 <p>As I don't have any previous experience as DevOps role I want to show how I do things.</p>
-                <p>To do it I'm appling the knowledge adquired in the bootcamp into the way to deploy this web.</p>
-                <p>This web and all code necessary to deploy it is at this repo: <a href="https://github.com/roberto-asir/cv-devops">https://github.com/roberto-asir/cv-devops</a></p>
-                <p>The web its deploy when the repo has a new commit: <a href="https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml">https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml</a></p>
+                <p>To do it I'm appling the knowledge adquired in the bootcamp into the way this website is deployed.</p>
+                <p>This web and all necessary code to deploy it is at this repo: <a href="https://github.com/roberto-asir/cv-devops">https://github.com/roberto-asir/cv-devops</a></p>
+                <p>Every new commit run a deployment: <a href="https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml">https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml</a></p>
                 <p>It is deploy using Terraform and GitHub Actions in a AWS S3 web bucket</p>
                 <p>The GitHub Actions pipeline generate dinamically the bucket objects from every changed file of the web and update it into the bucket using <i>cv-devops/modules/aws/cv/files_to_objects.sh</i> script.</p>
                 <p>Terraform apply command show the original bucket URI as output on purpose.</p>
