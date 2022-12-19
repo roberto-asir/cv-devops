@@ -22,7 +22,7 @@ Every new commit run a deployment https://github.com/roberto-asir/cv-devops/blob
 
 The deployment run a shell script to update S3 objects objects corresponding to the web archives.
 
-Then make the deploy in AWS S3 using Terraform.
+Then make the deploy in AWS S3 using Terraform using *remote Terraform state*.
 
 Pipeline use semantic-version to generate releases of new versions when (only) some file of the web is updated or created.
 
@@ -34,7 +34,11 @@ To run it is necesary have configured an AWS account.
 
 The way of authentication from GitHub is with repository secrets.
 
-Edit `providers.tf` with your desired region data.
+Edit `providers.tf`:
+- `aws.provider` object with your desired region data.
+- `terraform.backend`object with data of the remote state storage.
+
+
 
 Edit `cv-devops/modules/aws/cv/web/index.html` to update with your data.
 
