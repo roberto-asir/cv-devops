@@ -1,56 +1,46 @@
-# PRACTICA Final - migración nube AWS
+# Roberto Pérez DevOps CV
 
-## Índice:
-- [Repositorio GIT](#repositorio-git):
-- [Objetivo](#objetivo)
-- [La web](#la-web)
-- [Requisitos para hacerla funcionar](#requisitos-para-hacerla-funcionar)
-- [Modo de uso](#modo-de-uso)
-- [Variables configurables](#variables-configurables)
-***
+## Index:
 
-> La imagen generada puede funcionar de manera autónoma usando una base de datos sqlite3.
-> 
-> Esta base de datos no es persistente.
-> 
-> Para dotarla de persistencia es necesario conectarla con una base de datos postgressql
-
-## Repositorio GIT:
-
-La práctica está localizada en el repositorio https://github.com/KeepCodingCloudDevops6/aws-roberto
-
-## Objetivo:
-El objetivo de la práctica es hacer una plantilla de Terraform que despliegüe un Website Estático en un Bucket S3 en Irlanda. 
-
-Además debe generarse un output de Terraform con el endpoint de conexión.
+### [Description](#description) 
+### [How to run it](#how-to-run-it)
+### [TODO](#todo)
 
 
-## La web:
 
-La web es una página estática en su versión para uso personal:
+## Description
 
-https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+This repo is created as easy example to show how I understand DevOps philosophy.
+
+When there are a new commit github actions make a new deployment of the web.
+
+The destiny is an AWS S3 web bucket.
+
+The domain is configured to be access through ClodFlare CDN.
+
+Every new commit run a deployment https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml
+
+The deployment run a shell script to update S3 objects objects corresponding to the web archives.
+
+Then make the deploy in AWS S3 using Terraform.
+
+Pipeline use semantic-version to generate releases of new versions when (only) some file of the web is updated or created.
+
+## How to run it
+
+Clone this repo.
+
+To run it is necesary have configured an AWS account.
+
+The way of authentication from GitHub is with repository secrets.
+
+Edit `providers.tf` with your desired region data.
+
+Edit `cv-devops/modules/aws/cv/web/index.html` to update with your data.
 
 
-## Requisitos para hacerla funcionar
+## TODO
+- S3 bucket limit access to CloudFlare IPs
 
-- Es necesario descargarse el repositorio de github:
-
-```bash
-git clone git@github.com:KeepCodingCloudDevops6/aws-roberto.git
-```
-
-- El sistema debe tener configurado `terraform`
-
-## Modo de uso
-
-La web es una plantilla html que se encuentra en el directorio `/web` del repositorio.
-
-En el caso de modificar alguno de los ficheros de la web con ejecutar `terraform apply` ya se actualizarán los ficheros modificados.
-
-Esto es posible porque en el fichero `files.tf` se configura el argumento `etag` con el valor md5 del fichero calculado en tiempo de ejecución de terraform.
-De este modo si un fichero cambia cambiará el valor de `etag` y por tanto se aplicará el cambio en el despliegue.
-
-Además en el caso de añadir un nuevo fichero o de eliminar alguno de los existentes se puede ejucar el script `files_to_objects.sh`. 
-Con esta ejecución se regenerará el fichero `files.tf` con los ficheros existentes en ese momento.
-
+- GitHub Actions:
+    - Test deployment is ok or rollback
