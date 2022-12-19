@@ -23,7 +23,7 @@ h6 {
 }
 
 a {
-  color: #1e1e1e;
+  color: #586568b0;
   text-decoration: none;
   transition: all 0.5s ease-in-out;
 }
@@ -1570,4 +1570,8 @@ body {
 .bg-showthecode {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.clean-list {
+  list-style-type: none;
 }
