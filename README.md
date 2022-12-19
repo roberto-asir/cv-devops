@@ -32,7 +32,9 @@ Clone this repo.
 
 To run it is necesary have configured an AWS account.
 
-The way of authentication from GitHub is with repository secrets.
+The way of authentication from GitHub is through two repository secrets:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
 
 Edit `providers.tf`:
 - `aws.provider` object with your desired region data.
@@ -42,9 +44,12 @@ Edit `providers.tf`:
 
 Edit `cv-devops/modules/aws/cv/web/index.html` to update with your data.
 
+Including the term (MAJOR) or (MINOR) in the commit message alters the type of change the next version will represent by the semantic versioning.
+
+This only works when there are changes in the web directory. 
 
 ## TODO
-- S3 bucket limit access to CloudFlare IPs
+- Configure S3 bucket to limit access to CloudFlare IPs
 
 - GitHub Actions:
     - Test deployment is ok or rollback
