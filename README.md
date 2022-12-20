@@ -10,29 +10,29 @@
 
 ## Description
 
-This repo is created as easy example to show how I understand DevOps philosophy.
+This repo is created as an easy example to show how I understand DevOps philosophy.
 
-When there are a new commit github actions make a new deployment of the web.
+When there is a new commit Github Actions makes a new deployment of the web.
 
 The destiny is an AWS S3 web bucket.
 
-The domain is configured to be access through ClodFlare CDN.
+The domain is configured to be accessed through ClodFlare CDN.
 
-Every new commit run a deployment https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml
+Every new commit runs a deployment https://github.com/roberto-asir/cv-devops/blob/main/.github/workflows/main.yaml
 
-The deployment run a shell script to update S3 objects objects corresponding to the web archives.
+The deployment runs a shell script to update S3 objects corresponding to the web archives.
 
-Then make the deploy in AWS S3 using Terraform using *remote Terraform state*.
+The deploy is made in AWS S3 using Terraform which is configured as *remote Terraform state*.
 
-Pipeline use semantic-version to generate releases of new versions when (only) some file of the web is updated or created.
+Pipeline uses semantic-versions to generate releases of new versions when some file on the web is updated or created.
 
 ## How to run it
 
 Clone this repo.
 
-To run it is necesary have configured an AWS account.
+To run it, it is necessary to have an AWS account configured.
 
-The way of authentication from GitHub is through two repository secrets:
+The way of authentication from GitHub is done through two repository secrets:
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
 
