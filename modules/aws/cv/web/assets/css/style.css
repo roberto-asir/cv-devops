@@ -1575,3 +1575,11 @@ body {
 .clean-list {
   list-style-type: none;
 }
+
+.ico {
+  color: #0078ff;
+}
+
+.my-p::first-letter {
+  padding-left: 1em;
+}
