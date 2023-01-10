@@ -42,3 +42,26 @@ jobs:
       - name: Terraform apply
         run: terraform apply -auto-approve
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create empty semantic_release_version.txt file
+        run: touch semantic_release_version.txt
+
+      - name: Release
+        id: semantic_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --debug
+
+      - name: Get the version
+        id: get_version
+        run: |
+          echo VERSION=$(cat semantic_release_version.txt) >> $GITHUB_ENV
+
+    outputs:
+      version: ${{ env.VERSION }}
