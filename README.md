@@ -1,4 +1,7 @@
-# Roberto Pérez DevOps CV
+# Roberto Pérez DevOps CV 
+
+|  :information_source:  https://robertoasir.com/ repository  |
+|-----------------------------------------|
 
 ## Index:
 
@@ -10,11 +13,13 @@
 
 ## Description
 
-This repo is created as an easy example to show how I understand DevOps philosophy.
+This repo is an exercise to show how I understand DevOps philosophy.
 
-When there is a new commit Github Actions makes a new deployment of the web.
+The content of the repository is https://robertoasir.com/ 
 
-The destiny is an AWS S3 web bucket.
+Every time a new commit is done Github Actions makes a new deployment of the web.
+
+The deployment is done at an AWS S3 web bucket.
 
 The domain is configured to be accessed through ClodFlare CDN.
 
@@ -24,7 +29,7 @@ The deployment runs a shell script to update S3 objects corresponding to the web
 
 The deploy is made in AWS S3 using Terraform which is configured as *remote Terraform state*.
 
-Pipeline uses semantic-versions to generate releases of new versions when some file on the web is updated or created.
+Pipeline uses semantic-versions to generate releases of new versions: https://www.npmjs.com/package/semantic-release
 
 ## How to run it
 
@@ -44,9 +49,8 @@ Edit `providers.tf`:
 
 Edit `cv-devops/modules/aws/cv/web/index.html` to update with your data.
 
-Including the term (MAJOR) or (MINOR) in the commit message alters the type of change the next version will represent by the semantic versioning.
+Including the term `perf`(MAJOR), `feat' (MINOR) or `fix` (PATCH) at the begining of the commit message alters the type of change the next version will represent by the semantic versioning.
 
-This only works when there are changes in the web directory. 
 
 ## TODO
 - Configure S3 bucket to limit access to CloudFlare IPs
